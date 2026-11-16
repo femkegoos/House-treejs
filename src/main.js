@@ -171,8 +171,8 @@ function createLetterM( x, y ) {
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
   // Change these x/y offsets to move the two middle legs of the M.
-  addRoundedBar( letter, x - 0.055, y - 0.055, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y - 0.055, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x - 0.055, y - 0.035, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - 0.035, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
@@ -184,8 +184,8 @@ function createLetterK( x, y ) {
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   // Change these x/y offsets to move the two arms of the K.
-  addRoundedBar( letter, x + 0.005, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
-  addRoundedBar( letter, x + 0.005, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
   return letter;
 }
 
