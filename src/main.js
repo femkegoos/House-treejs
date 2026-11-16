@@ -68,7 +68,7 @@ const planeMaterial = new THREE.MeshToonMaterial( {
     color: 0xfffff,
 } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-plane.position.set( -0.3, 0.3, 1.51 );
+plane.position.set( -0.6, 0.6, 1.51 );
 plane.castShadow = true;
 plane.receiveShadow = true;
 cube.add( plane );
@@ -77,7 +77,7 @@ cube.add( plane );
 const edges = new THREE.EdgesGeometry( planeGeometry );
 const lineMaterial = new THREE.LineBasicMaterial( { color: 0x000000} );
 const line = new THREE.LineSegments( edges, lineMaterial );
-line.position.set( -0.3, 0.3, 1.51 );
+line.position.set( -0.6, 0.6, 1.51 );
 cube.add( line );
 
 //put a plane with black color on the cube named door
