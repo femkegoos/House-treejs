@@ -39,8 +39,8 @@ modelLoader.load(
     const model = gltf.scene;
 
     // Adjust these values to change the model's size and position.
-    model.scale.setScalar( 0.03 );
-    model.position.set( 4, 0, 0 );
+    model.scale.setScalar( 3 );
+    model.position.set( 4, 3, 4 );
 
     // Enable shadows for every mesh inside the imported model.
     model.traverse( ( child ) => {
