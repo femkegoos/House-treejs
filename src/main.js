@@ -12,6 +12,7 @@ import doorTextureUrl from '../textures/texture_door.jpg';
 import windowTextureUrl from '../textures/texture_window.png';
 import windowReflectionTextureUrl from '../textures/texture_window_reflection.jpg';
 import roofTextureUrl from '../textures/texture_roof.jpg';
+import garageTextureUrl from '../textures/texture_garage.jpg';
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -210,6 +211,18 @@ name.position.x = 0.2; // Move the complete name left or right here.
 name.position.y = -0.1; // Move the complete name up or down here.
 cube.add( name );
 
+//add plane with texture of garage door on the cube with the same heght as the door and the double widht of the door
+const garageDoorGeometry = new THREE.PlaneGeometry( 1.2, 1 );
+const garageDoorMaterial = new THREE.MeshToonMaterial( {
+    color: 0xffffff,
+} );
+//put texture map on the garage door with map material
+garageDoorMaterial.map = new THREE.TextureLoader().load( garageTextureUrl );
+const garageDoor = new THREE.Mesh( garageDoorGeometry, garageDoorMaterial );
+garageDoor.position.set( 0, -0.5, 1.51 );
+garageDoor.castShadow = true;
+garageDoor.receiveShadow = true;
+cube.add( garageDoor );
 
 
 //ambient light
