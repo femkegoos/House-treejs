@@ -76,7 +76,7 @@ const windowMaterial = new THREE.MeshToonMaterial( {
 //put window border texture on the window with map material
 windowMaterial.map = new THREE.TextureLoader().load( windowTextureUrl );
 const windowMesh = new THREE.Mesh( windowGeometry, windowMaterial );
-windowMesh.position.set( -0.6, 0.4, 1.52 );
+windowMesh.position.set( -0.9, 0.4, 1.52 );
 windowMesh.castShadow = true;
 windowMesh.receiveShadow = true;
 cube.add( windowMesh );
@@ -89,7 +89,7 @@ const planeMaterial = new THREE.MeshToonMaterial( {
 //put window reflection texture on the window with map material
 planeMaterial.map = new THREE.TextureLoader().load( windowReflectionTextureUrl );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-plane.position.set( -0.6, 0.4, 1.51 );
+plane.position.set( -0.9, 0.4, 1.51 );
 plane.castShadow = true;
 plane.receiveShadow = true;
 cube.add( plane );
