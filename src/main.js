@@ -325,7 +325,8 @@ directionalLightFolder.addBinding(directionalLight, 'intensity', { min: 0, max: 
 directionalLightFolder.addBinding(directionalLight.position, 'x', { min: -10, max: 10 });
 directionalLightFolder.addBinding(directionalLight.position, 'y', { min: -10, max: 10 });
 directionalLightFolder.addBinding(directionalLight.position, 'z', { min: -10, max: 10 });
-
+//disable directional light folder
+directionalLightFolder.expanded = false;
 
 // Create a stars atmosphere using white point particles
 const starsGeometry = new THREE.BufferGeometry();
