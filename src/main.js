@@ -10,7 +10,7 @@ import starTextureUrl from '../textures/texture_star.png';
 import doorTextureUrl from '../textures/texture_door.jpg';
 import windowTextureUrl from '../textures/texture_window.png';
 import windowReflectionTextureUrl from '../textures/texture_window_reflection.jpg';
-
+import roofTextureUrl from '../textures/texture_roof.jpg';
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +70,9 @@ const roofGeometry = new THREE.ConeGeometry( 2, 1, 4 );
 const roofMaterial = new THREE.MeshToonMaterial( { color: 0xff0000 } );
 const roof = new THREE.Mesh( roofGeometry, roofMaterial );
 roof.position.set( 0, 1.5, 0 );
+//put texture map on the roof with roof texture
+roofMaterial.map = new THREE.TextureLoader().load( roofTextureUrl );
+roof.rotation.y = Math.PI / 4;
 roof.castShadow = true;
 roof.receiveShadow = false;
 cube.add( roof );
