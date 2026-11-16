@@ -101,7 +101,7 @@ scene.add( ambientLight );
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 directionalLight.position.set( 3.50, 3.70, 10 );
 //set light intensity to 0.5
-directionalLight.intensity = 2;
+directionalLight.intensity = 1;
 directionalLight.castShadow = true;
 directionalLight.shadow.mapSize.set( 4096, 4096 );
 directionalLight.shadow.camera.near = 0.1;
