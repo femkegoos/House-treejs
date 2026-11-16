@@ -219,7 +219,7 @@ const garageDoorMaterial = new THREE.MeshToonMaterial( {
 //put texture map on the garage door with map material
 garageDoorMaterial.map = new THREE.TextureLoader().load( garageTextureUrl );
 const garageDoor = new THREE.Mesh( garageDoorGeometry, garageDoorMaterial );
-garageDoor.position.set( -2, -0.5, 1.51 );
+garageDoor.position.set( -1, -0.5, 1.51 );
 garageDoor.castShadow = true;
 garageDoor.receiveShadow = true;
 cube.add( garageDoor );
