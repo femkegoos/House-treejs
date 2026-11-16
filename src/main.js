@@ -212,7 +212,7 @@ name.position.y = -0.1; // Move the complete name up or down here.
 cube.add( name );
 
 //add plane with texture of garage door on the cube with the same heght as the door and the double widht of the door
-const garageDoorGeometry = new THREE.PlaneGeometry( 0.8, 1 );
+const garageDoorGeometry = new THREE.PlaneGeometry( 0.6, 1 );
 const garageDoorMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
 } );
