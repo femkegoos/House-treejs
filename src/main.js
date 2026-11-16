@@ -92,6 +92,8 @@ modelLoader.load(
 
 const axesHelper = new THREE.AxesHelper( 5 );
 scene.add( axesHelper );
+//disable axes helper
+axesHelper.visible = false;
 
 
 //ball
