@@ -84,7 +84,7 @@ cube.add( windowMesh );
 //put a window with texture on the cube
 const planeGeometry = new THREE.PlaneGeometry( 0.4, 0.4 );
 const planeMaterial = new THREE.MeshToonMaterial( {
-    color: 0xff0000,
+    color: 0xffffff,
 } );
 //put window reflection texture on the window with map material
 planeMaterial.map = new THREE.TextureLoader().load( windowReflectionTextureUrl );
