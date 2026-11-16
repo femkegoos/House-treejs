@@ -129,7 +129,7 @@ directionalLightFolder.addBinding(directionalLight.position, 'z', { min: -10, ma
 const starsGeometry = new THREE.BufferGeometry();
 const starsParticles = 10000;
 const starsPositions = new Float32Array( starsParticles * 3 );
-for ( let i = 0; i < starsPositions.length; i += 3 ) {
+for ( let i = 0; i < starsPositions.length; i += 10 ) {
   starsPositions[ i ] = ( Math.random() - 0.5 ) * 20;
   starsPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
   starsPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
