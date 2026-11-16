@@ -65,17 +65,28 @@ ground.receiveShadow = true;
 scene.add( ground );
 
 //put a window with texture on the cube
-const windowGeometry = new THREE.PlaneGeometry( 0.5, 0.8 );
+const windowGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
 const windowMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
 } );
-//put window texture on the window with map material
+//put window border texture on the window with map material
 windowMaterial.map = new THREE.TextureLoader().load( windowTextureUrl );
 const windowMesh = new THREE.Mesh( windowGeometry, windowMaterial );
-windowMesh.position.set( -0.6, 0.4, 1.51 );
+windowMesh.position.set( -0.6, 0.4, 1.52 );
 windowMesh.castShadow = true;
 windowMesh.receiveShadow = true;
 cube.add( windowMesh );
+
+//put a window with texture on the cube
+const planeGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
+const planeMaterial = new THREE.MeshToonMaterial( {
+    color: 0xfffff,
+} );
+const plane = new THREE.Mesh( planeGeometry, planeMaterial );
+plane.position.set( -0.6, 0.4, 1.51 );
+plane.castShadow = true;
+plane.receiveShadow = true;
+cube.add( plane );
 
 
 //put a plane with wood texture on the cube named door
