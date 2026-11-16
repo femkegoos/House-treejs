@@ -138,7 +138,7 @@ starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPosition
 //put texture map on the stars particles
 const starsMaterial = new THREE.PointsMaterial( {
   color: 0xffffff,
-  size: 1,
+  size: 2,
   transparent: true,
   alphaTest: 0.01,
   depthWrite: false,
