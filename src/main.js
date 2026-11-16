@@ -68,6 +68,9 @@ scene.add( ground );
 const windowGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
 const windowMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
+    transparent: true,
+    alphaTest: 0.01,
+    depthWrite: false,
 } );
 //put window border texture on the window with map material
 windowMaterial.map = new THREE.TextureLoader().load( windowTextureUrl );
