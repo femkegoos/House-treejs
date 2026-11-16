@@ -139,7 +139,6 @@ starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPosition
 const starsMaterial = new THREE.PointsMaterial( {
   color: 0x000000,
   size: 0.1,
-  transparent: false,
 } );
 starsMaterial.map = new THREE.TextureLoader().load( starTextureUrl );
 const stars = new THREE.Points( starsGeometry, starsMaterial );
