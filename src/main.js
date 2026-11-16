@@ -195,7 +195,7 @@ name.name = 'name';
 const letterF = createLetterF( -0.34, letterY ); // Change the first letter's x/y position here.
 const letterE1 = createLetterE( -0.05, letterY ); // Change the second letter's x/y position here.
 const letterM = createLetterM( 0.24, letterY ); // Change the M's x/y position here.
-const letterK = createLetterK( 0.63, letterY ); // Change the K's x/y position here.
+const letterK = createLetterK( 0.57, letterY ); // Change the K's x/y position here.
 const letterE2 = createLetterE( 0.82, letterY ); // Change the last letter's x/y position here.
 
 name.add( letterF );
