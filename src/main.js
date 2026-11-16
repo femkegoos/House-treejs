@@ -65,24 +65,15 @@ ground.position.y = -0.5;
 ground.receiveShadow = true;
 scene.add( ground );
 
-//put a lathe roof on top of the cube
-const roofPoints = [
-  new THREE.Vector2( 0, 1.1 ),
-  new THREE.Vector2( 0.7, 0.9 ),
-  new THREE.Vector2( 1.35, 0.35 ),
-  new THREE.Vector2( 1.65, 0 ),
-];
-const roofGeometry = new THREE.LatheGeometry( roofPoints, 32 );
-const roofMaterial = new THREE.MeshToonMaterial( {
-  color: 0x8b4513,
-  side: THREE.DoubleSide,
-} );
+//put conegeometry on the cube as a roof with red color
+const roofGeometry = new THREE.ConeGeometry( 2, 1, 4 );
+const roofMaterial = new THREE.MeshToonMaterial( { color: 0xff0000 } );
 const roof = new THREE.Mesh( roofGeometry, roofMaterial );
-roof.position.y = 1;
+roof.position.set( 0, 1.5, 0 );
+roof.rotation.y = Math.PI / 4;
 roof.castShadow = true;
-roof.receiveShadow = true;
+roof.receiveShadow = false;
 cube.add( roof );
-
 
 
 //put a window with texture on the cube
