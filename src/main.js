@@ -35,7 +35,7 @@ const ballMaterial = new THREE.MeshToonMaterial( {
 } );
 //put material map texture on the ball
 ballMaterial.map = new THREE.TextureLoader().load( moonTextureUrl );
-const ballGeometry = new THREE.SphereGeometry( 0.5, 64, 64 );
+const ballGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
 const ball = new THREE.Mesh( ballGeometry, ballMaterial );
 ball.position.set( 4, 4, 0 );
 //enable shadows for the ball for vercel online
@@ -103,7 +103,7 @@ directionalLight.position.set( 3.50, 3.70, 10 );
 //set light intensity to 0.5
 directionalLight.intensity = 2;
 directionalLight.castShadow = true;
-directionalLight.shadow.mapSize.set( 2048, 2048 );
+directionalLight.shadow.mapSize.set( 4096, 4096 );
 directionalLight.shadow.camera.near = 0.1;
 directionalLight.shadow.camera.far = 50;
 scene.add( directionalLight );
