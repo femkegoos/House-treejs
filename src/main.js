@@ -65,6 +65,26 @@ ground.position.y = -0.5;
 ground.receiveShadow = true;
 scene.add( ground );
 
+//put a lathe roof on top of the cube
+const roofPoints = [
+  new THREE.Vector2( 0, 1.1 ),
+  new THREE.Vector2( 0.7, 0.9 ),
+  new THREE.Vector2( 1.35, 0.35 ),
+  new THREE.Vector2( 1.65, 0 ),
+];
+const roofGeometry = new THREE.LatheGeometry( roofPoints, 32 );
+const roofMaterial = new THREE.MeshToonMaterial( {
+  color: 0x8b4513,
+  side: THREE.DoubleSide,
+} );
+const roof = new THREE.Mesh( roofGeometry, roofMaterial );
+roof.position.y = 1;
+roof.castShadow = true;
+roof.receiveShadow = true;
+cube.add( roof );
+
+
+
 //put a window with texture on the cube
 const windowGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
 const windowMaterial = new THREE.MeshToonMaterial( {
@@ -93,7 +113,6 @@ plane.position.set( -0.9, 0.4, 1.51 );
 plane.castShadow = true;
 plane.receiveShadow = true;
 cube.add( plane );
-
 
 //put a plane with wood texture on the cube named door
 const doorGeometry = new THREE.PlaneGeometry( .6, 1 );
