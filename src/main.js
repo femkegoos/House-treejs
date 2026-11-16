@@ -8,7 +8,7 @@ import moonTextureUrl from '../textures/texture_moon.jpg';
 import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
 import starTextureUrl from '../textures/texture_star.png';
 import doorTextureUrl from '../textures/texture_door.jpg';
-import windowTextureUrl from '../textures/texture_window.jpg';
+import windowTextureUrl from '../textures/texture_window.png';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
