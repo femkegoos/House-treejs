@@ -67,7 +67,7 @@ const planeMaterial = new THREE.MeshToonMaterial( {
     color: 0xfffff,
 } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-plane.position.set( -0.3, 0.3, 1.51 );
+plane.position.set( 1, 1, 1.51 );
 plane.castShadow = true;
 plane.receiveShadow = true;
 cube.add( plane );
