@@ -9,6 +9,7 @@ import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
 import starTextureUrl from '../textures/texture_star.png';
 import doorTextureUrl from '../textures/texture_door.jpg';
 import windowTextureUrl from '../textures/texture_window.png';
+import windowReflectionTextureUrl from '../textures/texture_window_reflection.jpg';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -85,6 +86,8 @@ const planeGeometry = new THREE.PlaneGeometry( 0.4, 0.4 );
 const planeMaterial = new THREE.MeshToonMaterial( {
     color: 0xff0000,
 } );
+//put window reflection texture on the window with map material
+planeMaterial.map = new THREE.TextureLoader().load( windowReflectionTextureUrl );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.position.set( -0.6, 0.4, 1.51 );
 plane.castShadow = true;
