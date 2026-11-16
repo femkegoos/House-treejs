@@ -89,7 +89,7 @@ const doorMaterial = new THREE.MeshToonMaterial( {
     opacity: 0.8
 } );
 const door = new THREE.Mesh( doorGeometry, doorMaterial );
-door.position.set( 0.5, -0.5, 1.01 );
+door.position.set( 0.5, 3.5, 1.01 );
 door.castShadow = true;
 door.receiveShadow = true;
 cube.add( door );
