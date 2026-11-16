@@ -123,12 +123,12 @@ cube.add( door );
 
 // Shared settings for the rounded 3D letters on the front of the house.
 const nameMaterial = new THREE.MeshToonMaterial( { color: 0xffd700 } );
-const letterWidth = 0.22;
-const letterHeight = 0.36;
-const letterThickness = 0.07;
-const letterDepth = 0.1;
-const letterY = 0.62;
-const frontZ = 1.56;
+const letterWidth = 0.22; // Change the width of every letter here.
+const letterHeight = 0.36; // Change the height of every letter here.
+const letterThickness = 0.07; // Change the thickness of every rounded bar here.
+const letterDepth = 0.1; // Change how far the letters come out of the wall here.
+const letterY = 0.62; // Change the shared vertical position of the name here.
+const frontZ = 1.56; // Change the distance from the front wall here.
 
 // Create one rounded bar. More bevel segments make the edges look smoother.
 function addRoundedBar( letterGroup, x, y, width, height, rotation = 0 ) {
@@ -136,8 +136,8 @@ function addRoundedBar( letterGroup, x, y, width, height, rotation = 0 ) {
     new RoundedBoxGeometry( width, height, letterDepth, 6, 0.035 ),
     nameMaterial
   );
-  bar.position.set( x, y, frontZ );
-  bar.rotation.z = rotation;
+  bar.position.set( x, y, frontZ ); // Change x/y when moving an individual bar.
+  bar.rotation.z = rotation; // Change rotation when changing a diagonal's direction.
   bar.castShadow = true;
   bar.receiveShadow = true;
   letterGroup.add( bar );
@@ -166,13 +166,13 @@ function createLetterE( x, y ) {
 // The diagonals meet at the bottom, like a normal capital M.
 function createLetterM( x, y ) {
   const letter = new THREE.Group();
-  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 ) + 0.04;
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
-  // Move the middle legs slightly upward and extend them for a seamless join.
-  addRoundedBar( letter, x - 0.055, y - 0.02, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y - 0.02, letterThickness, diagonalLength, -diagonalAngle );
+  // Change these x/y offsets to move the two middle legs of the M.
+  addRoundedBar( letter, x - 0.055, y - 0.055, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - 0.055, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
@@ -180,31 +180,31 @@ function createLetterM( x, y ) {
 // The upper and lower arms both point to the right.
 function createLetterK( x, y ) {
   const letter = new THREE.Group();
-  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 ) + 0.06;
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
-  // Move the arms toward the vertical stem so both sides overlap cleanly.
-  addRoundedBar( letter, x - 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
-  addRoundedBar( letter, x - 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
+  // Change these x/y offsets to move the two arms of the K.
+  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
   return letter;
 }
 
 // Add every letter separately so each one can be moved or styled independently.
 const name = new THREE.Group();
 name.name = 'name';
-const letterF = createLetterF( -0.34, letterY );
-const letterE1 = createLetterE( -0.05, letterY );
-const letterM = createLetterM( 0.24, letterY );
-const letterK = createLetterK( 0.53, letterY );
-const letterE2 = createLetterE( 0.82, letterY );
+const letterF = createLetterF( -0.34, letterY ); // Change the first letter's x/y position here.
+const letterE1 = createLetterE( -0.05, letterY ); // Change the second letter's x/y position here.
+const letterM = createLetterM( 0.24, letterY ); // Change the M's x/y position here.
+const letterK = createLetterK( 0.63, letterY ); // Change the K's x/y position here.
+const letterE2 = createLetterE( 0.82, letterY ); // Change the last letter's x/y position here.
 
 name.add( letterF );
 name.add( letterE1 );
 name.add( letterM );
 name.add( letterK );
 name.add( letterE2 );
-name.position.x = 0.2;
-name.position.y = -0.1;
+name.position.x = 0.2; // Move the complete name left or right here.
+name.position.y = -0.1; // Move the complete name up or down here.
 cube.add( name );
 
 
