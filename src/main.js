@@ -199,7 +199,8 @@ name.add( letterE1 );
 name.add( letterM );
 name.add( letterK );
 name.add( letterE2 );
-name.position.x = 0.5;
+name.position.x = 0.2;
+name.position.y = -0.3;
 cube.add( name );
 
 
