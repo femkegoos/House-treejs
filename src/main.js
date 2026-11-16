@@ -171,8 +171,8 @@ function createLetterM( x, y ) {
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
   // Change these x/y offsets to move the two middle legs of the M.
-  addRoundedBar( letter, x - 0.055, y - 0.035, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y - 0.035, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x - 0.055, y - 1.035, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - 1.035, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
