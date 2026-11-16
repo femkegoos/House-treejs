@@ -67,7 +67,7 @@ scene.add( ground );
 
 //put conegeometry on the cube as a roof with red color
 const roofGeometry = new THREE.ConeGeometry( 2, 1, 4 );
-const roofMaterial = new THREE.MeshToonMaterial( { color: 0xff0000 } );
+const roofMaterial = new THREE.MeshToonMaterial( { color: 0xffffff } );
 const roof = new THREE.Mesh( roofGeometry, roofMaterial );
 roof.position.set( 0, 1.5, 0 );
 //put texture map on the roof with roof texture
