@@ -128,7 +128,7 @@ directionalLightFolder.addBinding(directionalLight.position, 'z', { min: -10, ma
 // Create a stars atmosphere using white point particles
 const starsGeometry = new THREE.BufferGeometry();
 const starsParticles = 10000;
-const starsPositions = new Float32Array( starsParticles * 10 );
+const starsPositions = new Float32Array( starsParticles * 3 );
 for ( let i = 0; i < starsPositions.length; i += 3 ) {
   starsPositions[ i ] = ( Math.random() - 0.5 ) * 20;
   starsPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
@@ -138,7 +138,7 @@ starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPosition
 //put texture map on the stars particles
 const starsMaterial = new THREE.PointsMaterial( {
   color: 0xffffff,
-  size: 0.1,
+  size: 1,
   transparent: true,
   alphaTest: 0.01,
   depthWrite: false,
