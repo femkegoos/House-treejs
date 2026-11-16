@@ -136,7 +136,7 @@ for ( let i = 0; i < starsPositions.length; i += 3 ) {
 }
 starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPositions, 3 ) );
 //put texture map on the stars particles
-const starsTexture = new THREE.TextureLoader().load( starTextureUrl );
+starsMaterial.map = new THREE.TextureLoader().load( starTextureUrl );
 const starsMaterial = new THREE.PointsMaterial( { color: 0xffffff, size: 0.1, map: starsTexture } );
 const stars = new THREE.Points( starsGeometry, starsMaterial );
 scene.add( stars );
@@ -144,7 +144,7 @@ scene.add( stars );
 
 function animate( time ) {
   //group.position.x = Math.sin( time / 1000 );
-  //group.rotation.y = Math.sin( time / 1000 );
+  //group.rotation.y = Math.sin( time / 1000 );²
   renderer.render( scene, camera );
 
 
