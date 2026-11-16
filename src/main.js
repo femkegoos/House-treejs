@@ -147,7 +147,8 @@ function addRoundedBar( letterGroup, x, y, width, height, rotation = 0 ) {
 function createLetterF( x, y ) {
   const letter = new THREE.Group();
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x, y + letterHeight / 2, letterWidth, letterThickness );
+  // Keep the top bar within the maximum height of the vertical stem.
+  addRoundedBar( letter, x, y + letterHeight / 2 - letterThickness / 2, letterWidth, letterThickness );
   addRoundedBar( letter, x - 0.02, y, letterWidth * 0.75, letterThickness );
   return letter;
 }
@@ -156,9 +157,11 @@ function createLetterF( x, y ) {
 function createLetterE( x, y ) {
   const letter = new THREE.Group();
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x, y + letterHeight / 2, letterWidth, letterThickness );
+  // Keep the top arm within the maximum height of the vertical stem.
+  addRoundedBar( letter, x, y + letterHeight / 2 - letterThickness / 2, letterWidth, letterThickness );
   addRoundedBar( letter, x - 0.02, y, letterWidth * 0.75, letterThickness );
-  addRoundedBar( letter, x, y - letterHeight / 2, letterWidth, letterThickness );
+  // Keep the bottom arm within the minimum height of the vertical stem.
+  addRoundedBar( letter, x, y - letterHeight / 2 + letterThickness / 2, letterWidth, letterThickness );
   return letter;
 }
 
@@ -171,8 +174,8 @@ function createLetterM( x, y ) {
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
   // Change these x/y offsets to move the two middle legs of the M.
-  addRoundedBar( letter, x - 0.055, y - -0.015, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y - -0.015, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x - 0.055, y - -0.025, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - -0.025, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
