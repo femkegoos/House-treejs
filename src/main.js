@@ -181,6 +181,12 @@ scene.add( stars );
 function animate( time ) {
   //group.position.x = Math.sin( time / 1000 );
   //group.rotation.y = Math.sin( time / 1000 );²
+  //let the moon rotate around the cube
+  ball.position.x = Math.sin( time / 1000 ) * 4;
+  ball.position.z = Math.cos( time / 1000 ) * 4;
+  ball.rotation.y = time / 1000;
+  controls.update();
+  
   renderer.render( scene, camera );
 
 
