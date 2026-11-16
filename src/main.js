@@ -58,12 +58,26 @@ modelLoader.load(
           materials.push( child.material );
         }
 
+        let coloredMaterials = [];
         materials.forEach( ( material ) => {
-          material.color.set( 0x6f91ad );
-          material.metalness = 0.75;
-          material.roughness = 0.22;
-          material.needsUpdate = true;
+          // Create a PBR material so the UFO color and reflections are visible.
+          const ufoMaterial = new THREE.MeshStandardMaterial( {
+            color: 0x2d8cff,
+            map: material.map,
+            normalMap: material.normalMap,
+            roughnessMap: material.roughnessMap,
+            metalnessMap: material.metalnessMap,
+            metalness: 0.75,
+            roughness: 0.22,
+          } );
+          coloredMaterials.push( ufoMaterial );
         } );
+
+        if ( Array.isArray( child.material ) ) {
+          child.material = coloredMaterials;
+        } else {
+          child.material = coloredMaterials[ 0 ];
+        }
       }
     } );
 
@@ -285,6 +299,11 @@ directionalLight.castShadow = true;
 directionalLight.shadow.mapSize.set( 4096, 4096 );
 directionalLight.shadow.camera.near = 0.1;
 directionalLight.shadow.camera.far = 50;
+// Make the directional light cover the complete house and UFO orbit.
+directionalLight.shadow.camera.left = -20;
+directionalLight.shadow.camera.right = 20;
+directionalLight.shadow.camera.top = 20;
+directionalLight.shadow.camera.bottom = -20;
 scene.add( directionalLight );
 
 //directional light helper
