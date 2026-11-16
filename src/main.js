@@ -120,6 +120,66 @@ door.castShadow = true;
 door.receiveShadow = true;
 cube.add( door );
 
+//put the name FEMKE in 3D on the left side of the house
+const nameMaterial = new THREE.MeshToonMaterial( { color: 0xffd700 } );
+const nameGroup = new THREE.Group();
+const letterWidth = 0.34;
+const letterHeight = 0.55;
+const letterThickness = 0.08;
+const letterDepth = 0.08;
+
+function addNameBar( letterGroup, y, z, height, width, rotation = 0 ) {
+  const bar = new THREE.Mesh(
+    new THREE.BoxGeometry( letterDepth, height, width ),
+    nameMaterial
+  );
+  bar.position.set( -1.54, y, z );
+  bar.rotation.x = rotation;
+  bar.castShadow = true;
+  bar.receiveShadow = true;
+  letterGroup.add( bar );
+}
+
+function addNameLetter( letter, centerZ ) {
+  const letterGroup = new THREE.Group();
+  const leftZ = centerZ - letterWidth / 2;
+  const rightZ = centerZ + letterWidth / 2;
+  const middleY = 0.25;
+  const topY = middleY + letterHeight / 2;
+  const bottomY = middleY - letterHeight / 2;
+  const barWidth = letterWidth;
+  const diagonalLength = Math.sqrt( letterWidth ** 2 + letterHeight ** 2 );
+  const diagonalAngle = Math.atan2( letterWidth, letterHeight );
+
+  if ( letter === 'F' || letter === 'E' ) {
+    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
+    addNameBar( letterGroup, topY, centerZ, letterThickness, barWidth );
+    addNameBar( letterGroup, middleY, centerZ, letterThickness, barWidth * 0.75 );
+    if ( letter === 'E' ) {
+      addNameBar( letterGroup, bottomY, centerZ, letterThickness, barWidth );
+    }
+  } else if ( letter === 'M' ) {
+    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
+    addNameBar( letterGroup, middleY, rightZ, letterHeight, letterThickness );
+    addNameBar( letterGroup, topY - 0.08, centerZ - 0.08, diagonalLength, letterThickness, diagonalAngle );
+    addNameBar( letterGroup, topY - 0.08, centerZ + 0.08, diagonalLength, letterThickness, -diagonalAngle );
+  } else if ( letter === 'K' ) {
+    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
+    addNameBar( letterGroup, middleY + 0.13, centerZ, diagonalLength, letterThickness, diagonalAngle );
+    addNameBar( letterGroup, middleY - 0.13, centerZ, diagonalLength, letterThickness, -diagonalAngle );
+  }
+
+  nameGroup.add( letterGroup );
+}
+
+for ( const [ index, letter ] of [ 'F', 'E', 'M', 'K', 'E' ].entries() ) {
+  addNameLetter( letter, ( index - 2 ) * 0.48 );
+}
+
+nameGroup.castShadow = true;
+nameGroup.receiveShadow = true;
+cube.add( nameGroup );
+
 
 
 //ambient light
