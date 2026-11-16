@@ -311,6 +311,8 @@ scene.add( directionalLight );
 //directional light helper
 const directionalLightHelper = new THREE.DirectionalLightHelper( directionalLight, 1 );
 scene.add( directionalLightHelper );
+//disable directional light helper
+directionalLightHelper.visible = false;
 
 
 camera.position.z = 10;
