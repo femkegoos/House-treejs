@@ -71,11 +71,11 @@ const windowMaterial = new THREE.MeshToonMaterial( {
 } );
 //put window texture on the window with map material
 windowMaterial.map = new THREE.TextureLoader().load( windowTextureUrl );
-const window = new THREE.Mesh( windowGeometry, windowMaterial );
-window.position.set( -0.6, 0.4, 1.51 );
-window.castShadow = true;
-window.receiveShadow = true;
-cube.add( window );
+const windowMesh = new THREE.Mesh( windowGeometry, windowMaterial );
+windowMesh.position.set( -0.6, 0.4, 1.51 );
+windowMesh.castShadow = true;
+windowMesh.receiveShadow = true;
+cube.add( windowMesh );
 
 
 //put a plane with wood texture on the cube named door
