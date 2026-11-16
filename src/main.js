@@ -8,6 +8,7 @@ import moonTextureUrl from '../textures/texture_moon.jpg';
 import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
 import starTextureUrl from '../textures/texture_star.png';
 import doorTextureUrl from '../textures/texture_door.jpg';
+import windowTextureUrl from '../textures/texture_window.jpg';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -63,25 +64,21 @@ ground.position.y = -0.5;
 ground.receiveShadow = true;
 scene.add( ground );
 
-//put a plane with transparent texture on the cube
-const planeGeometry = new THREE.PlaneGeometry( 1, .5 );
-const planeMaterial = new THREE.MeshToonMaterial( {
-    color: 0xfffff,
+//put a window with texture on the cube
+const windowGeometry = new THREE.PlaneGeometry( 1, 0.5 );
+const windowMaterial = new THREE.MeshToonMaterial( {
+    color: 0xffffff,
 } );
-const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-plane.position.set( -0.6, 0.4, 1.51 );
-plane.castShadow = true;
-plane.receiveShadow = true;
-cube.add( plane );
+//put window texture on the window with map material
+windowMaterial.map = new THREE.TextureLoader().load( windowTextureUrl );
+const window = new THREE.Mesh( windowGeometry, windowMaterial );
+window.position.set( -0.6, 0.4, 1.51 );
+window.castShadow = true;
+window.receiveShadow = true;
+cube.add( window );
 
-//Border of the window with edgesgeometry
-const edges = new THREE.EdgesGeometry( planeGeometry );
-const lineMaterial = new THREE.LineBasicMaterial( { color: 0x000000} );
-const line = new THREE.LineSegments( edges, lineMaterial );
-line.position.set( -0.6, 0.4, 1.51 );
-cube.add( line );
 
-//put a plane with black color on the cube named door
+//put a plane with wood texture on the cube named door
 const doorGeometry = new THREE.PlaneGeometry( .6, 1 );
 const doorMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
