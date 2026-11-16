@@ -80,7 +80,7 @@ line.position.set( -0.3, 0.3, 1.51 );
 cube.add( line );
 
 //put a plane with black color on the cube named door
-const doorGeometry = new THREE.PlaneGeometry( .8, 1 );
+const doorGeometry = new THREE.PlaneGeometry( .6, 1 );
 const doorMaterial = new THREE.MeshToonMaterial( {
     color: 0x00000,
 } );
