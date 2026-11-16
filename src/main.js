@@ -65,7 +65,7 @@ ground.receiveShadow = true;
 scene.add( ground );
 
 //put a window with texture on the cube
-const windowGeometry = new THREE.PlaneGeometry( 1, 0.5 );
+const windowGeometry = new THREE.PlaneGeometry( 0.5, 0.8 );
 const windowMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
 } );
