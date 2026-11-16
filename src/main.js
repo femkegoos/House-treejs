@@ -1,6 +1,7 @@
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Pane} from 'tweakpane';
@@ -120,65 +121,82 @@ door.castShadow = true;
 door.receiveShadow = true;
 cube.add( door );
 
-//put the name FEMKE in 3D on the left side of the house
+// Shared settings for the rounded 3D letters on the front of the house.
 const nameMaterial = new THREE.MeshToonMaterial( { color: 0xffd700 } );
-const nameGroup = new THREE.Group();
-const letterWidth = 0.34;
-const letterHeight = 0.55;
-const letterThickness = 0.08;
-const letterDepth = 0.08;
+const letterWidth = 0.22;
+const letterHeight = 0.36;
+const letterThickness = 0.07;
+const letterDepth = 0.1;
+const letterY = 0.62;
+const frontZ = 1.56;
 
-function addNameBar( letterGroup, y, z, height, width, rotation = 0 ) {
+// Create one rounded bar. More bevel segments make the edges look smoother.
+function addRoundedBar( letterGroup, x, y, width, height, rotation = 0 ) {
   const bar = new THREE.Mesh(
-    new THREE.BoxGeometry( letterDepth, height, width ),
+    new RoundedBoxGeometry( width, height, letterDepth, 6, 0.035 ),
     nameMaterial
   );
-  bar.position.set( -1.54, y, z );
-  bar.rotation.x = rotation;
+  bar.position.set( x, y, frontZ );
+  bar.rotation.z = rotation;
   bar.castShadow = true;
   bar.receiveShadow = true;
   letterGroup.add( bar );
 }
 
-function addNameLetter( letter, centerZ ) {
-  const letterGroup = new THREE.Group();
-  const leftZ = centerZ - letterWidth / 2;
-  const rightZ = centerZ + letterWidth / 2;
-  const middleY = 0.25;
-  const topY = middleY + letterHeight / 2;
-  const bottomY = middleY - letterHeight / 2;
-  const barWidth = letterWidth;
-  const diagonalLength = Math.sqrt( letterWidth ** 2 + letterHeight ** 2 );
-  const diagonalAngle = Math.atan2( letterWidth, letterHeight );
-
-  if ( letter === 'F' || letter === 'E' ) {
-    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
-    addNameBar( letterGroup, topY, centerZ, letterThickness, barWidth );
-    addNameBar( letterGroup, middleY, centerZ, letterThickness, barWidth * 0.75 );
-    if ( letter === 'E' ) {
-      addNameBar( letterGroup, bottomY, centerZ, letterThickness, barWidth );
-    }
-  } else if ( letter === 'M' ) {
-    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
-    addNameBar( letterGroup, middleY, rightZ, letterHeight, letterThickness );
-    addNameBar( letterGroup, topY - 0.08, centerZ - 0.08, diagonalLength, letterThickness, diagonalAngle );
-    addNameBar( letterGroup, topY - 0.08, centerZ + 0.08, diagonalLength, letterThickness, -diagonalAngle );
-  } else if ( letter === 'K' ) {
-    addNameBar( letterGroup, middleY, leftZ, letterHeight, letterThickness );
-    addNameBar( letterGroup, middleY + 0.13, centerZ, diagonalLength, letterThickness, diagonalAngle );
-    addNameBar( letterGroup, middleY - 0.13, centerZ, diagonalLength, letterThickness, -diagonalAngle );
-  }
-
-  nameGroup.add( letterGroup );
+// Create the letter F from one vertical and two horizontal rounded bars.
+function createLetterF( x, y ) {
+  const letter = new THREE.Group();
+  addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
+  addRoundedBar( letter, x, y + letterHeight / 2, letterWidth, letterThickness );
+  addRoundedBar( letter, x - 0.02, y, letterWidth * 0.75, letterThickness );
+  return letter;
 }
 
-for ( const [ index, letter ] of [ 'F', 'E', 'M', 'K', 'E' ].entries() ) {
-  addNameLetter( letter, ( index - 2 ) * 0.48 );
+// Create the letter E from one vertical and three horizontal rounded bars.
+function createLetterE( x, y ) {
+  const letter = new THREE.Group();
+  addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
+  addRoundedBar( letter, x, y + letterHeight / 2, letterWidth, letterThickness );
+  addRoundedBar( letter, x - 0.02, y, letterWidth * 0.75, letterThickness );
+  addRoundedBar( letter, x, y - letterHeight / 2, letterWidth, letterThickness );
+  return letter;
 }
 
-nameGroup.castShadow = true;
-nameGroup.receiveShadow = true;
-cube.add( nameGroup );
+// Create the letter M with two verticals and two diagonal rounded bars.
+function createLetterM( x, y ) {
+  const letter = new THREE.Group();
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
+  const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
+  addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
+  addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
+  addRoundedBar( letter, x - 0.055, y + 0.055, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y + 0.055, letterThickness, diagonalLength, diagonalAngle );
+  return letter;
+}
+
+// Create the letter K with one vertical and two diagonal rounded bars.
+function createLetterK( x, y ) {
+  const letter = new THREE.Group();
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
+  const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
+  addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
+  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  return letter;
+}
+
+// Add every letter separately so each one can be moved or styled independently.
+const letterF = createLetterF( -0.34, letterY );
+const letterE1 = createLetterE( -0.05, letterY );
+const letterM = createLetterM( 0.24, letterY );
+const letterK = createLetterK( 0.53, letterY );
+const letterE2 = createLetterE( 0.82, letterY );
+
+cube.add( letterF );
+cube.add( letterE1 );
+cube.add( letterM );
+cube.add( letterK );
+cube.add( letterE2 );
 
 
 
