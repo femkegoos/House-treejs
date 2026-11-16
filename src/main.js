@@ -83,11 +83,11 @@ cube.add( line );
 
 //put a plane with black color on the cube named door
 const doorGeometry = new THREE.PlaneGeometry( .6, 1 );
+const doorMaterial = new THREE.MeshToonMaterial( {
+    color: 0xffffff,
+} );
 //put wood texture on the door with map material
 doorMaterial.map = new THREE.TextureLoader().load( doorTextureUrl );
-const doorMaterial = new THREE.MeshToonMaterial( {
-    color: 0x00000,
-} );
 const door = new THREE.Mesh( doorGeometry, doorMaterial );
 door.position.set( 0.8, -0.5, 1.51 );
 door.castShadow = true;
