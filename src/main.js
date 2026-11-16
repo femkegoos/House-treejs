@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Pane} from 'tweakpane';
 import moonTextureUrl from '../textures/texture_moon.jpg';
 import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
+import starTextureUrl from '../textures/texture_stars.png';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -124,19 +125,21 @@ directionalLightFolder.addBinding(directionalLight.position, 'y', { min: -10, ma
 directionalLightFolder.addBinding(directionalLight.position, 'z', { min: -10, max: 10 });
 
 
-// Create a snowy atmosphere using white point particles
-const snowGeometry = new THREE.BufferGeometry();
-const snowParticles = 5000;
-const snowPositions = new Float32Array( snowParticles * 3 );
-for ( let i = 0; i < snowPositions.length; i += 3 ) {
-  snowPositions[ i ] = ( Math.random() - 0.5 ) * 20;
-  snowPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
-  snowPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
+// Create a stars atmosphere using white point particles
+const starsGeometry = new THREE.BufferGeometry();
+const starsParticles = 5000;
+const starsPositions = new Float32Array( starsParticles * 3 );
+for ( let i = 0; i < starsPositions.length; i += 3 ) {
+  starsPositions[ i ] = ( Math.random() - 0.5 ) * 20;
+  starsPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
+  starsPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
 }
-snowGeometry.setAttribute( 'position', new THREE.BufferAttribute( snowPositions, 3 ) );
-const snowMaterial = new THREE.PointsMaterial( { color: 0xffffff, size: 0.1 } );
-const snow = new THREE.Points( snowGeometry, snowMaterial );
-scene.add( snow );
+starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPositions, 3 ) );
+//put texture map on the stars particles
+const starsTexture = new THREE.TextureLoader().load( starTextureUr );
+const starsMaterial = new THREE.PointsMaterial( { color: 0xffffff, size: 0.1, map: starsTexture } );
+const stars = new THREE.Points( starsGeometry, starsMaterial );
+scene.add( stars );
 
 
 function animate( time ) {
