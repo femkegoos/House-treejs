@@ -350,13 +350,13 @@ scene.add( stars );
 function animate( time ) {
   //group.position.x = Math.sin( time / 1000 );
   //group.rotation.y = Math.sin( time / 1000 );²
-  //let the moon rotate around the cube
-  ball.position.x = Math.sin( time / 1000 ) * 4;
-  ball.position.z = Math.cos( time / 1000 ) * 4;
-  ball.rotation.y = time / 1000;
+  // Let the moon orbit slowly around the cube.
+  ball.position.x = Math.sin( time / 5000 ) * 4;
+  ball.position.z = Math.cos( time / 5000 ) * 4;
+  ball.rotation.y = time / 5000;
 
-  // Rotate the orbit group much slower than the moon.
-  ufoOrbit.rotation.y = time / 5000;
+  // Let the UFO orbit faster than the moon.
+  ufoOrbit.rotation.y = time / 1000;
 
   controls.update();
   
