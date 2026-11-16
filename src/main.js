@@ -47,6 +47,21 @@ modelLoader.load(
       if ( child.isMesh ) {
         child.castShadow = true;
         child.receiveShadow = true;
+
+        // Give the UFO a blue metallic color while keeping its GLTF textures.
+        let materials = [];
+        if ( Array.isArray( child.material ) ) {
+          materials = child.material;
+        } else {
+          materials.push( child.material );
+        }
+
+        materials.forEach( ( material ) => {
+          material.color.set( 0x6f91ad );
+          material.metalness = 0.75;
+          material.roughness = 0.22;
+          material.needsUpdate = true;
+        } );
       }
     } );
 
