@@ -81,9 +81,9 @@ windowMesh.receiveShadow = true;
 cube.add( windowMesh );
 
 //put a window with texture on the cube
-const planeGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
+const planeGeometry = new THREE.PlaneGeometry( 0.4, 0.4 );
 const planeMaterial = new THREE.MeshToonMaterial( {
-    color: 0xfffff,
+    color: 0xff0000,
 } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.position.set( -0.6, 0.4, 1.51 );
