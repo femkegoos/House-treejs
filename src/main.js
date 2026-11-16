@@ -94,7 +94,7 @@ cube.add( door );
 
 
 //ambient light
-const ambientLight = new THREE.AmbientLight( 0x400000, 1 );
+const ambientLight = new THREE.AmbientLight( 0x400000, 3 );
 scene.add( ambientLight );
 
 //directional light
@@ -132,7 +132,7 @@ const starsPositions = new Float32Array( starsParticles * 3 );
 for ( let i = 0; i < starsPositions.length; i += 3 ) {
   starsPositions[ i ] = ( Math.random() - 0.5 ) * 20;
   starsPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
-  starsPositions[ i + 2 ] = -Math.random() * 20 - 1;
+  starsPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
 }
 starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPositions, 3 ) );
 //put texture map on the stars particles
@@ -145,6 +145,7 @@ const starsMaterial = new THREE.PointsMaterial( {
 } );
 starsMaterial.map = new THREE.TextureLoader().load( starTextureUrl );
 const stars = new THREE.Points( starsGeometry, starsMaterial );
+stars.renderOrder = -1;
 scene.add( stars );
 
 
