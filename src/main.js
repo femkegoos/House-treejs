@@ -2,6 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Pane} from 'tweakpane';
@@ -13,6 +14,7 @@ import windowTextureUrl from '../textures/texture_window.png';
 import windowReflectionTextureUrl from '../textures/texture_window_reflection.jpg';
 import roofTextureUrl from '../textures/texture_roof.jpg';
 import garageTextureUrl from '../textures/texture_garage.jpg';
+import modelUrl from '../objects/scene.gltf';
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +30,33 @@ renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
 const controls = new OrbitControls( camera, renderer.domElement );
+
+// Load the GLTF model and place it next to the house.
+const modelLoader = new GLTFLoader();
+modelLoader.load(
+  modelUrl,
+  ( gltf ) => {
+    const model = gltf.scene;
+
+    // Adjust these values to change the model's size and position.
+    model.scale.setScalar( 0.03 );
+    model.position.set( 4, 0, 0 );
+
+    // Enable shadows for every mesh inside the imported model.
+    model.traverse( ( child ) => {
+      if ( child.isMesh ) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    } );
+
+    scene.add( model );
+  },
+  undefined,
+  ( error ) => {
+    console.error( 'Could not load the GLTF model:', error );
+  }
+);
 
 
 const axesHelper = new THREE.AxesHelper( 5 );
