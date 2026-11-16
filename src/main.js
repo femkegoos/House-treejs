@@ -94,7 +94,7 @@ cube.add( door );
 
 
 //ambient light
-const ambientLight = new THREE.AmbientLight( 0x400000, 3 );
+const ambientLight = new THREE.AmbientLight( 0x400000, 1 );
 scene.add( ambientLight );
 
 //directional light
