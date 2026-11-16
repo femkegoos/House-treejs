@@ -14,7 +14,6 @@ import windowTextureUrl from '../textures/texture_window.png';
 import windowReflectionTextureUrl from '../textures/texture_window_reflection.jpg';
 import roofTextureUrl from '../textures/texture_roof.jpg';
 import garageTextureUrl from '../textures/texture_garage.jpg';
-import modelUrl from '../objects/scene.gltf';
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +31,7 @@ document.body.appendChild( renderer.domElement );
 const controls = new OrbitControls( camera, renderer.domElement );
 
 // Load the GLTF model and place it next to the house.
+const modelUrl = '/objects/scene.gltf';
 const modelLoader = new GLTFLoader();
 modelLoader.load(
   modelUrl,
