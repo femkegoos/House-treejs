@@ -68,8 +68,8 @@ ground.receiveShadow = true;
 scene.add( ground );
 
 //put conegeometry on the cube as a roof with red color
-// Increase the roof's four corner points by 0.5 using the radius.
-const roofGeometry = new THREE.ConeGeometry( 2.5, 1, 4 );
+// Increase the roof's four corner points using the radius.
+const roofGeometry = new THREE.ConeGeometry( 2.1, 1, 4 );
 const roofMaterial = new THREE.MeshToonMaterial( { color: 0xffffff } );
 const roof = new THREE.Mesh( roofGeometry, roofMaterial );
 roof.position.set( 0, 1.5, 0 );
