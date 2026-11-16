@@ -184,8 +184,8 @@ function createLetterK( x, y ) {
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   // Change these x/y offsets to move the two arms of the K.
-  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
-  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.025, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0.025, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
   return letter;
 }
 
