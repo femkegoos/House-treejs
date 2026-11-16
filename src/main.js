@@ -186,17 +186,21 @@ function createLetterK( x, y ) {
 }
 
 // Add every letter separately so each one can be moved or styled independently.
+const name = new THREE.Group();
+name.name = 'name';
 const letterF = createLetterF( -0.34, letterY );
 const letterE1 = createLetterE( -0.05, letterY );
 const letterM = createLetterM( 0.24, letterY );
 const letterK = createLetterK( 0.53, letterY );
 const letterE2 = createLetterE( 0.82, letterY );
 
-cube.add( letterF );
-cube.add( letterE1 );
-cube.add( letterM );
-cube.add( letterK );
-cube.add( letterE2 );
+name.add( letterF );
+name.add( letterE1 );
+name.add( letterM );
+name.add( letterK );
+name.add( letterE2 );
+name.position.x = 0.5;
+cube.add( name );
 
 
 
