@@ -70,7 +70,6 @@ const roofGeometry = new THREE.ConeGeometry( 2, 1, 4 );
 const roofMaterial = new THREE.MeshToonMaterial( { color: 0xff0000 } );
 const roof = new THREE.Mesh( roofGeometry, roofMaterial );
 roof.position.set( 0, 1.5, 0 );
-roof.rotation.y = Math.PI / 4;
 roof.castShadow = true;
 roof.receiveShadow = false;
 cube.add( roof );
