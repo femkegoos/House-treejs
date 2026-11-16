@@ -33,6 +33,8 @@ const controls = new OrbitControls( camera, renderer.domElement );
 // Load the GLTF model and place it next to the house.
 const modelUrl = '/objects/scene.gltf';
 const modelLoader = new GLTFLoader();
+const ufoOrbit = new THREE.Group();
+scene.add( ufoOrbit );
 modelLoader.load(
   modelUrl,
   ( gltf ) => {
@@ -40,7 +42,7 @@ modelLoader.load(
 
     // Adjust these values to change the model's size and position.
     model.scale.setScalar( 3 );
-    model.position.set( 4, 3, 4 );
+    model.position.set( 6, 3, 0 );
 
     // Enable shadows for every mesh inside the imported model.
     model.traverse( ( child ) => {
@@ -65,7 +67,7 @@ modelLoader.load(
       }
     } );
 
-    scene.add( model );
+    ufoOrbit.add( model );
   },
   undefined,
   ( error ) => {
@@ -333,6 +335,10 @@ function animate( time ) {
   ball.position.x = Math.sin( time / 1000 ) * 4;
   ball.position.z = Math.cos( time / 1000 ) * 4;
   ball.rotation.y = time / 1000;
+
+  // Rotate the orbit group much slower than the moon.
+  ufoOrbit.rotation.y = time / 5000;
+
   controls.update();
   
   renderer.render( scene, camera );
