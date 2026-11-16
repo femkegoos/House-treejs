@@ -137,9 +137,8 @@ for ( let i = 0; i < starsPositions.length; i += 3 ) {
 starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPositions, 3 ) );
 //put texture map on the stars particles
 const starsMaterial = new THREE.PointsMaterial( {
-  color: 0xffffff,
+  color: 0x000000,
   size: 0.1,
-  transparent: false,
 } );
 starsMaterial.map = new THREE.TextureLoader().load( starTextureUrl );
 const stars = new THREE.Points( starsGeometry, starsMaterial );
