@@ -35,7 +35,7 @@ const ballMaterial = new THREE.MeshToonMaterial( {
 } );
 //put material map texture on the ball
 ballMaterial.map = new THREE.TextureLoader().load( moonTextureUrl );
-const ballGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
+const ballGeometry = new THREE.SphereGeometry( 0.5, 64, 64 );
 const ball = new THREE.Mesh( ballGeometry, ballMaterial );
 ball.position.set( 4, 4, 0 );
 //enable shadows for the ball for vercel online
@@ -138,7 +138,7 @@ starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPosition
 //put texture map on the stars particles
 const starsMaterial = new THREE.PointsMaterial( {
   color: 0xffffff,
-  size: 0.8,
+  size: 0.6,
   transparent: true,
   alphaTest: 0.01,
   depthWrite: false,
