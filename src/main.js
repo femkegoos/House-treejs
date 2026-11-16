@@ -40,7 +40,7 @@ const ball = new THREE.Mesh( ballGeometry, ballMaterial );
 ball.position.set( 4, 4, 0 );
 //enable shadows for the ball for vercel online
 ball.castShadow = true;
-ball.receiveShadow = true;
+ball.receiveShadow = false;
 scene.add( ball );
 
 //cube
@@ -132,7 +132,7 @@ const starsPositions = new Float32Array( starsParticles * 3 );
 for ( let i = 0; i < starsPositions.length; i += 3 ) {
   starsPositions[ i ] = ( Math.random() - 0.5 ) * 20;
   starsPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
-  starsPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
+  starsPositions[ i + 2 ] = -Math.random() * 20 - 1;
 }
 starsGeometry.setAttribute( 'position', new THREE.BufferAttribute( starsPositions, 3 ) );
 //put texture map on the stars particles
