@@ -166,12 +166,13 @@ function createLetterE( x, y ) {
 // The diagonals meet at the bottom, like a normal capital M.
 function createLetterM( x, y ) {
   const letter = new THREE.Group();
-  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 ) + 0.04;
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x - 0.055, y - 0.055, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y - 0.055, letterThickness, diagonalLength, -diagonalAngle );
+  // Move the middle legs slightly upward and extend them for a seamless join.
+  addRoundedBar( letter, x - 0.055, y - 0.02, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - 0.02, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
@@ -179,11 +180,12 @@ function createLetterM( x, y ) {
 // The upper and lower arms both point to the right.
 function createLetterK( x, y ) {
   const letter = new THREE.Group();
-  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
+  const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 ) + 0.06;
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
-  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
+  // Move the arms toward the vertical stem so both sides overlap cleanly.
+  addRoundedBar( letter, x - 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x - 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
   return letter;
 }
 
