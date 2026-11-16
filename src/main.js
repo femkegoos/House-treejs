@@ -4,6 +4,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {Pane} from 'tweakpane';
+import moonTextureUrl from '../textures/texture_moon.jpg';
+import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +15,9 @@ const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.inner
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize( window.innerWidth, window.innerHeight );
+//enable shadows for rendering on vercel
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
@@ -28,10 +33,13 @@ const ballMaterial = new THREE.MeshToonMaterial( {
     color: 0xffffff,
 } );
 //put material map texture on the ball
-ballMaterial.map = new THREE.TextureLoader().load( '../textures/texture_moon.jpg' );
+ballMaterial.map = new THREE.TextureLoader().load( moonTextureUrl );
 const ballGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
 const ball = new THREE.Mesh( ballGeometry, ballMaterial );
 ball.position.set( 4, 4, 0 );
+//enable shadows for the ball for vercel online
+ball.castShadow = true;
+ball.receiveShadow = true;
 scene.add( ball );
 
 //cube
@@ -39,8 +47,19 @@ const geometry = new THREE.BoxGeometry( 3, 2, 3 );
 const material = new THREE.MeshToonMaterial( { color: 0xffffff } );
 const cube = new THREE.Mesh( geometry, material );
 cube.position.set( 0, 0.5, 0 );
-material.map = new THREE.TextureLoader().load( '../textures/texture_white_bricks.jpg' );
+material.map = new THREE.TextureLoader().load( whiteBricksTextureUrl );
+cube.castShadow = true;
+cube.receiveShadow = true;
 scene.add( cube );
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry( 30, 30 ),
+  new THREE.MeshToonMaterial( { color: 0x8fa0b5 } )
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -0.5;
+ground.receiveShadow = true;
+scene.add( ground );
 
 //put a plane with transparent texture on the cube
 const planeGeometry = new THREE.PlaneGeometry( 1, .5 );
@@ -51,6 +70,8 @@ const planeMaterial = new THREE.MeshToonMaterial( {
 } );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.position.set( -0.3, 0.3, 1.51 );
+plane.castShadow = true;
+plane.receiveShadow = true;
 cube.add( plane );
 
 //Border of the window with edgesgeometry
@@ -69,6 +90,8 @@ const doorMaterial = new THREE.MeshToonMaterial( {
 } );
 const door = new THREE.Mesh( doorGeometry, doorMaterial );
 door.position.set( 0.5, -0.5, 1.01 );
+door.castShadow = true;
+door.receiveShadow = true;
 cube.add( door );
 
 
@@ -82,6 +105,10 @@ const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 directionalLight.position.set( 3.50, 3.70, 10 );
 //set light intensity to 0.5
 directionalLight.intensity = 2;
+directionalLight.castShadow = true;
+directionalLight.shadow.mapSize.set( 2048, 2048 );
+directionalLight.shadow.camera.near = 0.1;
+directionalLight.shadow.camera.far = 50;
 scene.add( directionalLight );
 
 //directional light helper
@@ -104,8 +131,8 @@ directionalLightFolder.addBinding(directionalLight.position, 'z', { min: -10, ma
 // Create a snowy atmosphere using white point particles
 const snowGeometry = new THREE.BufferGeometry();
 const snowParticles = 5000;
-const snowPositions = new Float32Array( snowParticles * 1 );
-for ( let i = 0; i < snowPositions.length; i += 1 ) {
+const snowPositions = new Float32Array( snowParticles * 3 );
+for ( let i = 0; i < snowPositions.length; i += 3 ) {
   snowPositions[ i ] = ( Math.random() - 0.5 ) * 20;
   snowPositions[ i + 1 ] = ( Math.random() - 0.5 ) * 20;
   snowPositions[ i + 2 ] = ( Math.random() - 0.5 ) * 20;
