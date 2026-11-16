@@ -200,7 +200,7 @@ name.add( letterM );
 name.add( letterK );
 name.add( letterE2 );
 name.position.x = 0.2;
-name.position.y = 0.1;
+name.position.y = -0.2;
 cube.add( name );
 
 
