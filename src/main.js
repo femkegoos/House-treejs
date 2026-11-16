@@ -7,6 +7,7 @@ import {Pane} from 'tweakpane';
 import moonTextureUrl from '../textures/texture_moon.jpg';
 import whiteBricksTextureUrl from '../textures/texture_white_bricks.jpg';
 import starTextureUrl from '../textures/texture_star.png';
+import doorTextureUrl from '../textures/texture_door.jpg';
 
 //register scroll trigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +83,8 @@ cube.add( line );
 
 //put a plane with black color on the cube named door
 const doorGeometry = new THREE.PlaneGeometry( .6, 1 );
+//put wood texture on the door with map material
+doorMaterial.map = new THREE.TextureLoader().load( doorTextureUrl );
 const doorMaterial = new THREE.MeshToonMaterial( {
     color: 0x00000,
 } );
