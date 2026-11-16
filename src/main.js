@@ -163,25 +163,27 @@ function createLetterE( x, y ) {
 }
 
 // Create the letter M with two verticals and two diagonal rounded bars.
+// The diagonals meet at the bottom, like a normal capital M.
 function createLetterM( x, y ) {
   const letter = new THREE.Group();
   const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
   addRoundedBar( letter, x + letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x - 0.055, y + 0.055, letterThickness, diagonalLength, -diagonalAngle );
-  addRoundedBar( letter, x + 0.055, y + 0.055, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x - 0.055, y - 0.055, letterThickness, diagonalLength, diagonalAngle );
+  addRoundedBar( letter, x + 0.055, y - 0.055, letterThickness, diagonalLength, -diagonalAngle );
   return letter;
 }
 
 // Create the letter K with one vertical and two diagonal rounded bars.
+// The upper and lower arms both point to the right.
 function createLetterK( x, y ) {
   const letter = new THREE.Group();
   const diagonalLength = Math.hypot( letterWidth / 2, letterHeight / 2 );
   const diagonalAngle = Math.atan2( letterWidth / 2, letterHeight / 2 );
   addRoundedBar( letter, x - letterWidth / 2, y, letterThickness, letterHeight );
-  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, diagonalAngle );
-  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0.015, y + 0.09, letterThickness, diagonalLength, -diagonalAngle );
+  addRoundedBar( letter, x + 0.015, y - 0.09, letterThickness, diagonalLength, diagonalAngle );
   return letter;
 }
 
@@ -200,7 +202,7 @@ name.add( letterM );
 name.add( letterK );
 name.add( letterE2 );
 name.position.x = 0.2;
-name.position.y = -0.2;
+name.position.y = -0.1;
 cube.add( name );
 
 
